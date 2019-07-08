@@ -1,10 +1,4 @@
-# pySpeechRev
-# Mirco Ravanelli - Fondazione Bruno Kessler
-# Nov 2017
-
-# Example:
-# python pySpeechRev.py clean_examples/ rev_examples/ list.txt
-
+import random
 import numpy as np
 from scipy import signal
 import sys
@@ -70,9 +64,11 @@ for i in range(len(list_sig)):
  signal_rev=signal_rev[0:signal_clean.shape[0]]
 
  #add background noise to reverberated signal
- a = len(signal_rev)
- c = (background_noise[:a])
- signal_rev_add_noise = c + signal_rev
+ b = len(signal_rev)
+ a = len(background_noise)
+ c = random.randint(0,a-b)
+ d = background_noise[c:c+b]
+ signal_rev_add_noise = d + signal_rev
  
  # Save Reverberated Speech
  file_out=list_sig[i].replace(in_folder, out_folder)
